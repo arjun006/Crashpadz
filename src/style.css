@@ -1,8 +1,15 @@
 body {
     background-color: #023e8a;
 }
-.main_bk_img {
+a {
+    text-decoration: none;
+    color: #ffffff;
 }
+a:hover{
+    text-decoration: none;
+    color:#fff; 
+}
+
 nav{
     height: 12em;
     background-color: #ffffff;
@@ -23,6 +30,55 @@ nav.nav_small {
 .navbar-nav {
     margin-left: 25px;
 }
+.footer {
+    background-color: #00b4d8;
+}
+.navbar {
+    height: 100px;
+}
+.social-icon {
+    width: 50px;
+}
+.copyrighted {
+    text-align: center;
+    vertical-align: middle;
+}
+.social-media {
+    vertical-align: middle;
+    margin: 0 auto;
+    text-align: center;
+}
+.info {
+    width: 80%;
+    height: 500px;
+    margin: 0 auto;
+    background-image: url("peru.jpeg");
+    background-size: cover;
+    border-radius: 20px;
+}
+.title {
+    padding: 40px;
+    font-weight: 700;
+}
+.message {
+   margin-top: 70px;
+   margin-left: 40px; 
+   font-size: 20px;
+   background-color: #0077b6;
+   display: inline-block;
+   opacity: 80%;
+   padding: 20px;
+   border-radius: 20px;
+}
+.p-message {
+    color:#fff;
+    font-weight:1000;
+}
+iframe {
+   display: table;
+    margin: 10px auto;
+    border-radius: 20px;
+}
 .btn-secondary{
     background-color: white;
     border-style: solid;
@@ -37,6 +93,21 @@ nav.nav_small {
     padding: 20px 0;
     margin: 0 auto;
     background-color: #e8c423;
+}
+.room-header {
+    height: 200px;
+    background-image: url("header-room-img.jpeg");
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    background-size: cover;
+}
+.room-title {
+    display: table;
+    font-size: 150px;
+    margin: auto;
+    vertical-align: middle;
+    color:#095975;
 }
 .container-fluid {
     padding: 0px;
@@ -58,11 +129,24 @@ nav.nav_small {
 }
 
 .card-deck {
-    margin: 10px;
+    margin: 40px;
     margin-top: 25px;
 }
 .card-img-top{
     height: 65%;
 }
-
-    
+.checkin {
+    background-color: white;
+    margin:3em auto;
+    padding: 20px;
+    border-radius: 50px;
+    max-width: 85%;
+}
+.checkin_form {
+    margin: 0 auto;
+}
+.btn-info {
+    padding: 5px;
+    margin-left: 30px;
+    border-radius: 10px;
+}

@@ -30,8 +30,6 @@
               <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login">Log In</button>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register" data-whatever="@mdo">Sign Up!</button>
             </div>
-            
-            
           </nav>
           <div class="container-fluid">
             <div class="row banner">
@@ -40,6 +38,55 @@
               <div class="row">
               </div>
             </div>
+<!-- Check In Form -->
+<div class="checkin">
+  <form class="checkin_form">
+    <span class="form_group">
+      <label for="destination">Destination</label>
+      <select name="destination" id="destination"placeholder="Select a destination">
+        <option value="0">Select a destination</option>
+        <option value="brazil">Brazil</option>
+        <option value="nunavut">Nunavut</option>
+        <option value="costarica">Costa Rica</option>
+        <option value="borabora">Bora Bora</option>
+        <option value="iceland">Iceland</option>
+        <option value="australia">Australia</option>
+      </select>
+    </span>
+    <span class="form_group">
+      <label for="date">Check-in</label>
+      <input type="date" name="checkin" id="checkin">
+    </span>
+    <span class="form_group">
+      <label for="date">Check-out</label>
+      <input type="date" name="checkout" id="checkout">
+    </span>  
+    <span class="form_group">
+      <label for="guests">Guests</label>
+      <input type="number" min="1">
+    </span>
+    <span class="form_group">
+      <button type="button" class="btn btn-info">
+        <a href="/rooms">Find Stays!</a>
+      </button> 
+    </span>
+      
+    
+  </form>
+</div>
+<div class="info">
+  <h2 class="title">
+    Who We Are
+  </h2>
+  <div class="message">
+    <p class="p-message">
+      At Crashpadz our team is commited to finding you the most exciting and incredible places to stay all over the world.<br>  From nights in the treetops of the Amazon to rooms deep within the ocean reefs,<br> Crashpadz will find awe inspiring rooms that you won't want to fall asleep in.
+    </p>
+  </div>
+  
+</div>
+
+  <iframe width="500" height="300" src="https://www.youtube.com/embed/QH9IvVv3RfM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <!-- Modal Sign Up-->
 <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,6 +102,7 @@
         <form>
           <div class="form-group">
             <input type="text" class="form-control" id="email" placeholder="Email address">
+            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="first-name" placeholder="First name">
@@ -105,6 +153,27 @@
     </div>
   </div>
 </div>
-        </div>    
+        </div>  
+        <div class="nav-footer">
+          <nav class="navbar footer  static-bottom">
+              <p class="copyrighted">&copy; 2020 Arjun Devakumar</p>
+            <div class="social-media">
+              <a href="http://www.instagram.com" target="_blank">
+                <img src="instagram.png" alt="instagram" class="social-icon" />
+              </a>
+              <a href="http://www.facebook.com" target="_blank">
+                <img src="facebook.png" alt="facebook" class="social-icon" />
+              </a>
+              <a href="http://www.pinterest.ca" target="_blank">
+                <img src="pintrest.png" alt="" class="social-icon" />
+              </a>
+            </div>
+            <a class="navbar-brand" href="#">
+              <img src="chrashpadz_logo.png" height="80px">
+            </a>
+          </nav>
+        </div>
+         
+          
     </body>
 </html>
