@@ -1,0 +1,68 @@
+body {
+    background-color: #023e8a;
+}
+.main_bk_img {
+}
+nav{
+    height: 12em;
+    background-color: #ffffff;
+}
+nav.nav_small {
+    height: 6em;
+    
+    border-color: #e8c423;
+    border-bottom-style: solid;
+}
+.nav_logo{
+    height:100%;
+    padding-right:2em;
+}
+.nav-link{
+    font-size: 25px;
+}
+.navbar-nav {
+    margin-left: 25px;
+}
+.btn-secondary{
+    background-color: white;
+    border-style: solid;
+    border-color: #0077b6;
+    color:#0077b6;
+}
+.btn-primary{
+    background-color:#0077b6 ;
+}
+.banner {
+    width: 100%;
+    padding: 20px 0;
+    margin: 0 auto;
+    background-color: #e8c423;
+}
+.container-fluid {
+    padding: 0px;
+    margin: 0;
+}
+.banner_text {
+    margin: auto;
+}
+.banner_img {
+    object-fit: cover;
+}
+.carousel{
+    object-fit: cover;
+    max-width:100%;
+}
+.header_room{
+    object-fit: cover;
+    overflow: none;
+}
+
+.card-deck {
+    margin: 10px;
+    margin-top: 25px;
+}
+.card-img-top{
+    height: 65%;
+}
+
+    
