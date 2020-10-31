@@ -38,9 +38,8 @@ app.get("/register", function(req,res){
 //Registration mailing
 
 const storage = multer.diskStorage({
-    destination: "./public/photos/",
+    destination: "",
     filename: function (req, file, cb) {
-
       cb(null, Date.now() + path.extname(file.originalname));
     }
   });
