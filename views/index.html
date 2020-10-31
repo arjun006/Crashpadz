@@ -2,19 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../src/reset.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css" type="text/css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        
+        <script src="validate.js"></script>
+
       </head>
     <body class="main_bk_img">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand-md" width=100%>
           <div class="nav_logo">
             <img src="chrashpadz_logo.png" height="100%">
-            <img src="logo_crashpadz_name.png" height=50em>
+            <img src="logo_crashpadz_name.png" width="50%">
           </div>
           
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,9 +71,7 @@
       <button type="button" class="btn btn-info">
         <a href="/rooms">Find Stays!</a>
       </button> 
-    </span>
-      
-    
+    </span>    
   </form>
 </div>
 <div class="info">
@@ -99,10 +99,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form onsubmit="return regValidator()" action="/register" method="POST">
           <div class="form-group">
-            <input type="text" class="form-control" id="email" placeholder="Email address">
+            <input type="text" class="form-control" id="email-reg" placeholder="Email address">
             <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div id="email-error"></div>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="first-name" placeholder="First name">
@@ -117,12 +118,13 @@
 
            <label for="birthday">Enter your birthday:</label>
            <input type="date" id="birthday" name="birthday" placeholder="yyyy-dd-mm">
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit"  class="btn btn-primary">Sign Up</button>
+          </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" data-dismiss="modal" class="btn btn-primary">Sign Up</button>
-      </div>
+     
     </div>
   </div>
 </div>
@@ -137,19 +139,23 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="login-form" onsubmit="return loginValidator()" name="login_form">
           <div class="form-group">
-            <input type="email" class="form-control" id="email" placeholder="Email address">
+            <input type="text" class="form-control" id="email-login" placeholder="Email address">
+            <div id="login-error"></div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="login-password" placeholder="Password">
+            <div id=password-error></div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+          </div>
+          
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Sign In</button>
-      </div>
+      
     </div>
   </div>
 </div>

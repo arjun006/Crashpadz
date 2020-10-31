@@ -1,8 +1,14 @@
 var express = require("express");
 var path = require("path");
+var multer = require("multer");
+const bodyParser = require('body-parser');
+const { check, validationResult } = require('express-validator');
+const exhbs = require('express-handlebars');
+
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/src"));
 app.use(express.static(__dirname + "/img"));

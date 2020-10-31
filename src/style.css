@@ -23,6 +23,8 @@ nav.nav_small {
 .nav_logo{
     height:100%;
     padding-right:2em;
+    margin: 0 auto;
+   
 }
 .nav-link{
     font-size: 25px;
@@ -149,4 +151,13 @@ iframe {
     padding: 5px;
     margin-left: 30px;
     border-radius: 10px;
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    .checkin { display: none; } 
+  }
+#login-error p{
+    color:red;
+}
+#reg-valid {
+    color:green;
 }
