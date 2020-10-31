@@ -99,7 +99,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form onsubmit="return regValidator()">
+        <form onsubmit="return regValidator()" action="/register" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <input type="text" class="form-control" id="email-reg" placeholder="Email address">
             <small class="form-text text-muted">We'll never share your email with anyone else.</small>

@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var multer = require("multer");
+var nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const exhbs = require('express-handlebars');
@@ -28,20 +29,76 @@ app.get("/rooms", function(req,res){
         layout:false
     });
 });
-
-app.post("/register", urlencodedParser, [
-    check('email', 'Email is not valid')
-        .isEmail()
-        .normalizeEmail()
-], (req,res) => {
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        const alert = errors.array()
-        res.render('register', {
-            alert
-        })
-    }
+app.get("/register", function(req,res){
+    res.render('register',{
+        layout:false
+    });
 });
+
+//Registration mailing
+
+const storage = multer.diskStorage({
+    destination: "./public/photos/",
+    filename: function (req, file, cb) {
+
+      cb(null, Date.now() + path.extname(file.originalname));
+    }
+  });
+
+  const upload = multer({ storage: storage });
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { 
+        user: 'adevakumar1web322@gmail.com',
+        pass: '159076199'
+    }
+  });
+
+
+  app.post("/register",upload.single(''),(req, res) => {
+
+    const FORM_FILE = req.file;
+    const FORM_DATA = req.body;
+
+
+
+  var mailOptions = {
+
+    from: 'adevakumar1web322@gmail.com',
+    to: FORM_DATA.email,
+    subject: 'Test email from NODE.js using nodemailer',
+    html: '<p>Hello ' + FORM_DATA.First + ":</p><p>Thank-you for contacting us.</p>"
+
+}
+
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+      console.log("ERROR: " + error);
+  } else {
+      console.log("SUCCESS: " + info.response);
+  }
+});
+
+
+app.get('/register', function(req, res){
+
+  var someData = {
+   fname: FORM_DATA.First
+
+  }
+  res.render('register', {
+  data: someData, layout: false});
+});
+
+
+res.writeHead(302, {
+  'Location': '/register'
+});
+res.end();
+});
+
 app.listen(PORT,function(){
     console.log(`🌎 ==> Server listening now on port ${PORT}!`);
 });
+
