@@ -158,6 +158,15 @@ iframe {
 #login-error p{
     color:red;
 }
-#reg-valid {
+#password-error{
+    color:red;
+}
+#email-valid {
     color:green;
+}
+#pass-valid {
+    color: green;
+}
+#pass-error {
+    color:red;
 }

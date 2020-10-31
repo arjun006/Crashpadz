@@ -8,20 +8,40 @@ const exhbs = require('express-handlebars');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+app.engine('.hbs', exhbs({ extname: '.hbs' }));
+app.set('views', path.join(__dirname + '/views'));
+app.set('view engine', '.hbs');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-//app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/src"));
 app.use(express.static(__dirname + "/img"));
 
 
 app.get("/", function(req,res){
-    res.sendFile(path.join(__dirname,"/views/index.html"));
+    res.render('index',{
+        layout: false
+    });
 });
 app.get("/rooms", function(req,res){
-    res.sendFile(path.join(__dirname,"/views/rooms.html"));
+    res.render('rooms',{
+        layout:false
+    });
 });
 
-
+app.post("/register", urlencodedParser, [
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail()
+], (req,res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        const alert = errors.array()
+        res.render('register', {
+            alert
+        })
+    }
+});
 app.listen(PORT,function(){
     console.log(`🌎 ==> Server listening now on port ${PORT}!`);
 });

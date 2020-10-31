@@ -25,16 +25,29 @@ function regValidator() {
     const regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     const passRegex =/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,22}$/ ;
     var isValidReg = true;
-    var regEmail = document.getElementById("email-reg");
+    var regEmail = document.getElementById("email-reg").value;
+    var regPass = document.getElementById("reg-password").value;
     var emailError = document.getElementById("email-error");
+    var emailValid = document.getElementById("email-valid");
+    var passError = document.getElementById("pass-error");
+    var passValid = document.getElementById("pass-valid");
+    passError.innerHTML = "";
+    passValid.innerHTML = "";
     emailError.innerHTML = "";
-    if(regex.test(regEmail)){
-        emailError.innerHTML += "<p>Looks good!</p>";
-    } else {
-        
+    emailValid.innerHTML = "";
+    if(!regex.test(regEmail)){
+       
         emailError.innerHTML += "<p>Enter a valid email.</p>";
-        isValidReg=false;
-        
+        isValidReg=false;  
+       
+    } else {
+        emailValid.innerHTML += "<p>Looks good!</p>";
+    }
+    if(passRegex.test(regPass)){
+        passValid.innerHTML += "<p>Looks good!</p>"
+    } else {
+        passError.innerHTML += "<p>Enter a valid password. Atleast 1 uppercase letter and atleast 1 number.</p>";
+        isValidReg=false; 
     }
 
     return isValidReg;
