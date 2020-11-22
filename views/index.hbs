@@ -99,31 +99,31 @@
         </button>
       </div>
       <div class="modal-body">
-        <form onsubmit="return regValidator()" action="/register" method="POST" enctype="multipart/form-data">
+        <form onsubmit="return regValidator()" action="/add-user" method="POST">
           <div class="form-group">
-            <input type="text" class="form-control" id="email-reg" placeholder="Email address">
+            <input type="text" class="form-control" id="email-reg" name="email" placeholder="Email address">
             <small class="form-text text-muted">We'll never share your email with anyone else.</small>
             <div id="email-error"></div>
             <div id="email-valid"></div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="first-name" placeholder="First name">
+            <input type="text" class="form-control" id="first-name" name="firstname"placeholder="First name">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="last-name" placeholder="Last name">
+            <input type="text" class="form-control" id="last-name" name="lastname" placeholder="Last name">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="reg-password" placeholder="Create a password">
+            <input type="password" class="form-control" id="reg-password" name="password" placeholder="Create a password">
             <div id="pass-error"></div>
             <div id="pass-valid"></div>
           </div>
           <!-- Birthday entry -->
 
            <label for="birthday">Enter your birthday:</label>
-           <input type="date" id="birthday" name="birthday" placeholder="yyyy-dd-mm">
+           <input type="date" id="birthday" name="dob" placeholder="yyyy-dd-mm">
            <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit"  class="btn btn-primary">Sign Up</button>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
           </div>
         </form>
       </div>

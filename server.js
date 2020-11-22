@@ -5,8 +5,12 @@ var nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const exhbs = require('express-handlebars');
-
-
+const mongoose = require("mongoose");
+const { arch } = require("os");
+const db = require('../web322_assign_1/models/user');
+const uri = "mongodb+srv://dbUser:pass@cluster0.jucej.mongodb.net/web322?retryWrites=true&w=majority";
+const addUser = require('../web322_assign_1/controller/addUser');
+//Express Connection
 var app = express();
 var PORT = process.env.PORT || 3000;
 app.engine('.hbs', exhbs({ extname: '.hbs' }));
@@ -18,7 +22,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/src"));
 app.use(express.static(__dirname + "/img"));
 
+//Mongoose Connection
+mongoose.connect(uri,{useNewUrlParser: true},{useUnifiedTopology: true})
+.then(() =>  console.log('MongoDB connected...'))
+.catch(err => console.log(err));
 
+//User Controller
+
+
+//GET Routes
 app.get("/", function(req,res){
     res.render('index',{
         layout: false
@@ -34,9 +46,13 @@ app.get("/register", function(req,res){
         layout:false
     });
 });
+//POST Routes
+// app.post("/add-user", function(req,res){
+//   console.log(req.body);
+//   res.redirect('/register');
+// });
 
 //Registration mailing
-
 const storage = multer.diskStorage({
     destination: "",
     filename: function (req, file, cb) {
@@ -53,7 +69,6 @@ const storage = multer.diskStorage({
         pass: '159076199'
     }
   });
-
 
   app.post("/register",upload.single(''),(req, res) => {
 
@@ -96,7 +111,7 @@ res.writeHead(302, {
 });
 res.end();
 });
-
+app.use('/', addUser);
 app.listen(PORT,function(){
     console.log(`🌎 ==> Server listening now on port ${PORT}!`);
 });
