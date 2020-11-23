@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 let router = express.Router();
 let User = require('../models/user');
-let validLogin = false;
+let validLogin = true;
 app.use(clientSessions({
     cookieName: "session", // this is the object name that will be added to 'req'
     secret: "web322_assign3_unguessably_long_string_", // this should be a long un-guessable string.
@@ -15,6 +15,7 @@ app.use(clientSessions({
     activeDuration: 1000 * 60 // the session will be extended by this many ms each request (1 minute)
   }));
 router.post('/login',(req,res)=>{
+    
     const email = req.body.email;
     const password = req.body.password;
     if(email === "" || password === ""){
@@ -22,17 +23,19 @@ router.post('/login',(req,res)=>{
 
     }
         User.findOne({email:req.body.email},function(err,user){
-            if(err) throw err;
             
+            if(err) throw err;
+            console.log(user);
             if(user){
                 user.comparePassword(req.body.password, function(err,isMatch){
                     if(err) throw err;
                     if(isMatch === true){
-                        console.log("valid password");
                         validLogin = true;
+                        console.log("valid password1" + validLogin);
                     } else {
                         console.log("invalid password")
                         validLogin = false;
+                        console.log("invalid1" + validLogin)
                     }
                 });
             } else {
@@ -44,8 +47,10 @@ router.post('/login',(req,res)=>{
             if(validLogin === true){
                 //create active session here
                 res.redirect('/active');
+                console.log("valid password2" + validLogin);
             } else {
                 res.redirect('/');
+                console.log("invalid2" + validLogin)
             }
             
         });
