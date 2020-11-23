@@ -9,10 +9,10 @@ const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const exhbs = require('express-handlebars');
 const mongoose = require("mongoose");
-const db = require('../web322_assign_1/models/user');
+const db = require('./models/user');
 const uri = "mongodb+srv://" + process.env.DB_USER +":" + process.env.DB_PASS + "@cluster0.jucej.mongodb.net/" + process.env.DB_NAME + "?retryWrites=true&w=majority";
-const addUser = require('../web322_assign_1/controller/addUser');
-const userLogin = require('../web322_assign_1/controller/userLogin');
+const addUser = require('./controller/addUser');
+const userLogin = require('./controller/userLogin');
 
 //Express Connection
 var app = express();
