@@ -5,9 +5,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 let router = express.Router();
-let assert = require("assert");
 let User = require('../models/user');
-const { urlencoded } = require("body-parser");
 var existingUser = true;
     router.post('/add-user',(req, res,) => {
         console.log("Add user");
@@ -33,6 +31,7 @@ var existingUser = true;
                             console.log("There was an error saving the user." + err);
                          } else {
                              console.log("User successfully saved!");
+                             existingUser=false;
                          }
                  });
                     existingUser=false;
@@ -43,7 +42,10 @@ var existingUser = true;
 
         }).then(function(){
             if(existingUser){
-                res.redirect('/');
+                res.redirect('/',200,function(){
+                    //fix alert
+                    alert("email already in use!");
+                })
                 //alert('Email already in use.')
             } else {
                 res.redirect('/register');

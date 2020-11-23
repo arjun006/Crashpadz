@@ -142,13 +142,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="login-form" onsubmit="return loginValidator()"  name="login_form">
+        <form id="login-form" onsubmit="return loginValidator()"  action="/login" method="POST" name="login_form">
           <div class="form-group">
-            <input type="text" class="form-control" id="email-login" placeholder="Email address">
+            <input type="text" class="form-control" id="email-login" name="email" placeholder="Email address">
             <div id="login-error"></div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="login-password" placeholder="Password">
+            <input type="password" class="form-control" id="login-password" name="password" placeholder="Password">
             <div id="password-error"></div>
           </div>
           <div class="modal-footer">

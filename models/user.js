@@ -1,5 +1,9 @@
+const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const clientSessions = require('client-sessions');
+var app = express();
+
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
     firstName: String,
@@ -17,5 +21,16 @@ const userSchema = new Schema({
       next(err);
     }
   });
+
+  userSchema.methods.comparePassword = function(pass,cb){
+      bcrypt.compare(pass,this.password,function(err,isMatch){
+          if(err) {
+              throw err;
+          }else {
+              cb(null,isMatch);
+          }
+      });
+  }
+  
 const User = mongoose.model("web322_users",userSchema);
 module.exports = User;
