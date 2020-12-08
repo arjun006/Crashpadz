@@ -13,26 +13,7 @@
 
       </head>
     <body class="main_bk_img">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand-md" width=100%>
-          <div class="nav_logo">
-            <img src="chrashpadz_logo.png" height="100%">
-            <img src="logo_crashpadz_name.png" width="50%">
-          </div>
-          
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="rooms">Find A Room</a>
-              </div>
-            </div>
-            <div class="signin_btn">
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login">Log In</button>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register" data-whatever="@mdo">Sign Up!</button>
-            </div>
-          </nav>
+        {{> header user}}
           <div class="container-fluid">
             <div class="row banner">
                <h5 class="banner_text">Sign up now for a <strong>$100.00</strong> off your first stay!</h5>
@@ -41,39 +22,7 @@
               </div>
             </div>
 <!-- Check In Form -->
-<div class="checkin">
-  <form class="checkin_form">
-    <span class="form_group">
-      <label for="destination">Destination</label>
-      <select name="destination" id="destination"placeholder="Select a destination">
-        <option value="0">Select a destination</option>
-        <option value="brazil">Brazil</option>
-        <option value="nunavut">Nunavut</option>
-        <option value="costarica">Costa Rica</option>
-        <option value="borabora">Bora Bora</option>
-        <option value="iceland">Iceland</option>
-        <option value="australia">Australia</option>
-      </select>
-    </span>
-    <span class="form_group">
-      <label for="date">Check-in</label>
-      <input type="date" name="checkin" id="checkin">
-    </span>
-    <span class="form_group">
-      <label for="date">Check-out</label>
-      <input type="date" name="checkout" id="checkout">
-    </span>  
-    <span class="form_group">
-      <label for="guests">Guests</label>
-      <input type="number" min="1">
-    </span>
-    <span class="form_group">
-      <button type="button" class="btn btn-info">
-        <a href="/rooms">Find Stays!</a>
-      </button> 
-    </span>    
-  </form>
-</div>
+{{>checkin}}
 <div class="info">
   <h2 class="title">
     Who We Are
@@ -131,58 +80,6 @@
     </div>
   </div>
 </div>
-<!-- Modal Log In -->
-<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="login">Log In</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="login-form" onsubmit="return loginValidator()"  action="/login" method="POST" name="login_form">
-          <div class="form-group">
-            <input type="text" class="form-control" id="email-login" name="email" placeholder="Email address">
-            <div id="login-error"></div>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" id="login-password" name="password" placeholder="Password">
-            <div id="password-error"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Sign In</button>
-          </div>
-          
-        </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
-        </div>  
-        <div class="nav-footer">
-          <nav class="navbar footer  static-bottom">
-              <p class="copyrighted">&copy; 2020 Arjun Devakumar</p>
-            <div class="social-media">
-              <a href="http://www.instagram.com" target="_blank">
-                <img src="instagram.png" alt="instagram" class="social-icon" />
-              </a>
-              <a href="http://www.facebook.com" target="_blank">
-                <img src="facebook.png" alt="facebook" class="social-icon" />
-              </a>
-              <a href="http://www.pinterest.ca" target="_blank">
-                <img src="pintrest.png" alt="" class="social-icon" />
-              </a>
-            </div>
-            <a class="navbar-brand" href="#">
-              <img src="chrashpadz_logo.png" height="80px">
-            </a>
-          </nav>
-        </div>
-         
-          
+   {{>footer}}    
     </body>
 </html>

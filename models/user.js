@@ -1,8 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const clientSessions = require('client-sessions');
-var app = express();
 
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
@@ -10,7 +8,8 @@ const userSchema = new Schema({
     lastName:String,
     email:String,
     password:String,
-    dob:String
+    dob:String,
+    isAdmin: Boolean
   });
   userSchema.pre('save',async function(next){
     try {

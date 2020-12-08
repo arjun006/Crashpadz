@@ -19,27 +19,7 @@
         <script src="validate.js"></script>
    </head>
     <body>
-        
-        <nav class="navbar navbar-expand-lg navbar-light bg-light nav_small">
-            <div class="nav_logo">
-              <img src="chrashpadz_logo.png" height="100%">
-              <img src="logo_crashpadz_name.png" height=30em>
-            </div>
-            
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                  <a class="nav-link" href="rooms">Find A Room</a>
-                </div>
-              </div>
-              <div class="signin_btn">
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login">Log In</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register" data-whatever="@mdo">Sign Up!</button>
-              </div>
-            </nav>
+        {{>header user}}
         <!-- Modal Sign Up-->
 <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -119,40 +99,7 @@
                     <h1 class="room-title">Stays</h1>
                 </div>
                 <!-- Check In Form -->
-<div class="checkin">
-    <form class="checkin_form">
-      <span class="form_group">
-        <label for="destination">Destination</label>
-        <select name="destination" id="destination"placeholder="Select a destination">
-          <option value="0">Select a destination</option>
-          <option value="brazil">Brazil</option>
-          <option value="nunavut">Nunavut</option>
-          <option value="costarica">Costa Rica</option>
-          <option value="borabora">Bora Bora</option>
-          <option value="iceland">Iceland</option>
-          <option value="australia">Australia</option>
-        </select>
-      </span>
-      <span class="form_group">
-        <label for="date">Check-in</label>
-        <input type="date" name="checkin" id="checkin">
-      </span>
-      <span class="form_group">
-        <label for="date">Check-out</label>
-        <input type="date" name="checkout" id="checkout">
-      </span>  
-      <span class="form_group">
-        <label for="guests">Guests</label>
-        <input type="number" min="1">
-      </span>
-      <span class="form_group">
-        <button type="button" class="btn btn-info">
-          <a href="/rooms">Find Stays!</a>
-        </button> 
-      </span>
-        
-    </form>
-  </div>
+{{>checkin}}
                 <div class="row room_banner">
                 </div>
                 <div class="row card-deck">
@@ -215,24 +162,6 @@
                     </div>
                 </div>
             </div>
-            <div class="nav-footer">
-                <nav class="navbar footer  static-bottom">
-                    <p class="copyrighted">&copy; 2020 Arjun Devakumar</p>
-                  <div class="social-media">
-                    <a href="http://www.instagram.com" target="_blank">
-                      <img src="instagram.png" alt="instagram" class="social-icon" />
-                    </a>
-                    <a href="http://www.facebook.com" target="_blank">
-                      <img src="facebook.png" alt="facebook" class="social-icon" />
-                    </a>
-                    <a href="http://www.pinterest.ca" target="_blank">
-                      <img src="pintrest.png" alt="" class="social-icon" />
-                    </a>
-                  </div>
-                  <a class="navbar-brand" href="#">
-                    <img src="chrashpadz_logo.png" height="80px">
-                  </a>
-                </nav>
-              </div>
+       {{>footer}}
     </body>
 </html>

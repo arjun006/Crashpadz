@@ -7,14 +7,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let router = express.Router();
 let User = require('../models/user');
 var existingUser = true;
-    router.post('/add-user',(req, res,) => {
+    router.post('/add-user',(req, res) => {
         console.log("Add user");
         var user = new User({
             firstName:req.body.firstname,
             lastName:req.body.lastname,
             email:req.body.email,
             password:req.body.password,
-            dob:req.body.dob
+            dob:req.body.dob,
+            isAdmin:false
           });
           User.findOne({email: req.body.email},function(err,doc){
               if(err){
@@ -46,7 +47,6 @@ var existingUser = true;
                     //fix alert
                     alert("email already in use!");
                 })
-                //alert('Email already in use.')
             } else {
                 res.redirect('/register');
             }

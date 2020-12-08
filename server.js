@@ -1,4 +1,5 @@
 var express = require("express");
+let router = express.Router();
 var path = require("path");
 var multer = require("multer");
 const dotenv = require('dotenv')
@@ -9,7 +10,7 @@ const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const exhbs = require('express-handlebars');
 const mongoose = require("mongoose");
-const db = require('./models/user');
+const User = require('./models/user');
 const uri = "mongodb+srv://" + process.env.DB_USER +":" + process.env.DB_PASS + "@cluster0.jucej.mongodb.net/" + process.env.DB_NAME + "?retryWrites=true&w=majority";
 const addUser = require('./controller/addUser');
 const userLogin = require('./controller/userLogin');
@@ -28,10 +29,30 @@ app.use(express.static(__dirname + "/img"));
 app.use(clientSessions({
   cookieName: "session", // this is the object name that will be added to 'req'
   secret: "web322_assign3_unguessably_long_string_", // this should be a long un-guessable string.
-  duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
-  activeDuration: 1000 * 60 // the session will be extended by this many ms each request (1 minute)
+  duration: 2 * 60 * 5000, // duration of the session in milliseconds (5 minutes)
+  activeDuration: 2000 * 60 // the session will be extended by this many ms each request (2 minute)
 }));
+function ensureLogin(req, res, next) {
+  if (!req.session.user) {
+    res.redirect("/login");
+  } else {
+    next();
+  }
+};
 
+function ensureAdmin(req,res,next){
+  console.log(req.session.user)
+  if(!req.session.user) {
+    res.redirect("/login");
+  } else {
+    if(req.session.user.isAdmin == true){
+      next();
+    }
+    else{
+      res.redirect("/login");
+    }
+  }
+}
 
 //Mongoose Connection
 mongoose.connect(uri,{useNewUrlParser: true,useUnifiedTopology: true})
@@ -44,27 +65,73 @@ mongoose.connect(uri,{useNewUrlParser: true,useUnifiedTopology: true})
 //GET Routes
 app.get("/", function(req,res){
     res.render('index',{
+        user: req.session.user,
         layout: false
     });
 });
 app.get("/rooms", function(req,res){
     res.render('rooms',{
-        layout:false
+      user: req.session.user,
+      layout:false
     });
 });
 app.get("/register", function(req,res){
     res.render('register',{
+        user: req.session.user,
         layout:false
     });
 });
-app.get("/active",function(req,res){
-  res.render('active',{layout:false})
+app.get("")
+
+app.get("/active", ensureLogin, function(req,res){
+  res.render('active',{user:req.session.user, layout:false})
 });
 app.get("/logout",function(req,res){
+  req.session.reset();
   res.render('logout',{layout:false})
 });
+app.get("/login",function(req,res){
+  res.render('login',{layout:false})
+});
+app.get("/add-room",ensureAdmin,function(req,res){
+  res.render('addRoom',{ user:req.session.user,layout:false})
+})
 //POST Routes
-
+//User Login
+app.post('/login-validation',(req,res)=>{
+  const email = req.body.email;
+  const password = req.body.password;
+  if(email === "" || password === ""){
+      return res.render('/', {err: "Missing credentials.", layout : false});
+  }
+      User.findOne({email:req.body.email},function(err,user){
+          if(err) throw err;
+          if(user){
+              user.comparePassword(req.body.password, function(err,isMatch){
+                  if(err) throw err;
+                  if(isMatch === true){
+                      validLogin = true;
+                      req.session.user = {
+                        email: user.email,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        isAdmin: user.isAdmin
+                      }
+                      console.log("User: " + user.firstName + " is logged in" + "\n" + "Admin: " + user.isAdmin);
+                      res.redirect('/');
+                  } else {
+                      console.log("Invalid credentials")
+                      validLogin = false;
+                      res.redirect('/login');
+                  }
+              });
+          } else {
+              console.log('User doesn\'t exist');
+              validLogin = false;
+              res.render("login",{errorMsg:"The email or password entered is not correct", layout:false});
+          }  
+      })
+});
 
 //Registration mailing
 const storage = multer.diskStorage({
@@ -126,7 +193,6 @@ res.writeHead(302, {
 res.end();
 });
 app.use('/', addUser);
-app.use('/', userLogin)
 app.listen(PORT,function(){
     console.log(`🌎 ==> Server listening now on port ${PORT}!`);
 });

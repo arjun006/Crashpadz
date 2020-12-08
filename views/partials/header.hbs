@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand-md" width=100%>
+          <div class="nav_logo">
+            <img src="chrashpadz_logo.png" height="100%">
+            <img src="logo_crashpadz_name.png" width="50%">
+          </div>
+          
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="rooms">Find A Room</a>
+                {{#if isAdmin}}
+                <a class="nav-link" href="rooms-list">Edit Rooms</a>
+                <a class="nav-link" href="add-room">New Room</a>
+                {{/if}}
+              </div>
+            </div>
+            <div class="signin_btn">
+                {{#if email}}
+              <a href="/logout">
+              <button type="button" class="btn btn-secondary"  data-target="/logout">Logout</button>
+              </a>
+              {{else}}
+              <a href="/login">
+              <button type="button" class="btn btn-secondary"  data-target="/login">Log In</button>
+              </a>
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register" data-whatever="@mdo">Sign Up!</button>
+              {{/if}}
+            </div>
+          </nav>

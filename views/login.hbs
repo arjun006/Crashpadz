@@ -23,12 +23,26 @@
               
             </nav>
         <div class="register-thanks">
-            <h3>Hi {{firstName}},</h3>
-            <h3>Thanks for signing up!</h3>
-            <div class="register-btn">
-    <button type="button" class="btn btn-info">
-        <a href="/rooms">Find Stays!</a>
-      </button> 
+              <div>
+        <form id="login-form" onsubmit="return loginValidator()"  action="/login-validation" method="POST" name="login_form">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email-login" name="email" placeholder="Email address">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="login-password" name="password" placeholder="Password">
+            {{#if errorMsg}}
+            <p>{{errorMsg}}</p>
+            {{/if}}
+          </div>
+          <div>
+            <a href="/"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
+            
+            <button type="submit" class="btn btn-primary">Sign In</button>
+          </div>
+          
+        </form>
+      </div>
             </div>
         
         </div>
