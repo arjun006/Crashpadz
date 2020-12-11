@@ -22,7 +22,7 @@ router.post('/booking',(req,res) => {
         console.log("Error saving booking: " + err);
         else{
             console.log("Booking added successfully!");
-            (res.render('index',{user:req.session.user,layout:false}));
+            (res.render('booking-thanks',{layout:false}));
         }
     })
     

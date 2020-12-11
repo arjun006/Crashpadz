@@ -150,12 +150,12 @@ app.post('/login-validation',(req,res)=>{
       })
 });
 //Booking-form
-app.post('/booking-form',ensureLogin,(req,res)=>{
+app.post('/booking-form',(req,res)=>{
   Room.findOne({roomID:req.body.roomID})
   .lean()
   .exec()
   .then((room)=>{
-    res.render('booking',ensureLogin,{room:room, user:req.session.user,layout: false});
+    res.render('booking',{room:room, user:req.session.user,layout: false});
   })
 })
 //Registration mailing
