@@ -3,12 +3,13 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 const roomSchema = new Schema ({
+    roomID: Number,
     title: String,
     price: Number,
     desc: String,
     location: String,
-    photo: String
+    photoURL: String
 });
 
-const Room = mongoose.model("web322_users",roomSchema);
+const Room = mongoose.model("web322_rooms",roomSchema);
 module.exports = Room;

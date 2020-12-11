@@ -13,7 +13,10 @@ const mongoose = require("mongoose");
 const User = require('./models/user');
 const uri = "mongodb+srv://" + process.env.DB_USER +":" + process.env.DB_PASS + "@cluster0.jucej.mongodb.net/" + process.env.DB_NAME + "?retryWrites=true&w=majority";
 const addUser = require('./controller/addUser');
+const addRoom = require('./controller/addRoom');
+const addBooking = require('./controller/addBooking');
 const userLogin = require('./controller/userLogin');
+const Room = require("./models/room");
 
 //Express Connection
 var app = express();
@@ -24,13 +27,15 @@ app.set('view engine', '.hbs');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname));
 app.use(express.static(__dirname + "/src"));
 app.use(express.static(__dirname + "/img"));
+app.use(express.static(__dirname + "/room_images"));
 app.use(clientSessions({
   cookieName: "session", // this is the object name that will be added to 'req'
   secret: "web322_assign3_unguessably_long_string_", // this should be a long un-guessable string.
   duration: 2 * 60 * 5000, // duration of the session in milliseconds (5 minutes)
-  activeDuration: 2000 * 60 // the session will be extended by this many ms each request (2 minute)
+  activeDuration: 2000 * 60 // the session will be extended by this many ms each request (1 minute)
 }));
 function ensureLogin(req, res, next) {
   if (!req.session.user) {
@@ -70,10 +75,19 @@ app.get("/", function(req,res){
     });
 });
 app.get("/rooms", function(req,res){
+  Room.find()
+  .lean()
+  .exec()
+  .then((room)=>{
+    console.log(room);
     res.render('rooms',{
+      room:room,
+      roomLen: !!room.length,
       user: req.session.user,
       layout:false
     });
+  })
+    
 });
 app.get("/register", function(req,res){
     res.render('register',{
@@ -81,14 +95,17 @@ app.get("/register", function(req,res){
         layout:false
     });
 });
-app.get("")
+//app.get("")
 
 app.get("/active", ensureLogin, function(req,res){
   res.render('active',{user:req.session.user, layout:false})
 });
-app.get("/logout",function(req,res){
+app.get("/logout",ensureLogin, function(req,res){
   req.session.reset();
-  res.render('logout',{layout:false})
+  res.render('logout',{user:req.session.user, layout:false})
+  });
+app.get("/thank-you-for-booking",ensureLogin,function(req,res){
+  res.render('booking-thanks',{user:req.session.user, layout:false})
 });
 app.get("/login",function(req,res){
   res.render('login',{layout:false})
@@ -132,7 +149,15 @@ app.post('/login-validation',(req,res)=>{
           }  
       })
 });
-
+//Booking-form
+app.post('/booking-form',ensureLogin,(req,res)=>{
+  Room.findOne({roomID:req.body.roomID})
+  .lean()
+  .exec()
+  .then((room)=>{
+    res.render('booking',ensureLogin,{room:room, user:req.session.user,layout: false});
+  })
+})
 //Registration mailing
 const storage = multer.diskStorage({
     destination: "",
@@ -192,7 +217,9 @@ res.writeHead(302, {
 });
 res.end();
 });
+app.use('/',addRoom);
 app.use('/', addUser);
+app.use('/',addBooking);
 app.listen(PORT,function(){
     console.log(`🌎 ==> Server listening now on port ${PORT}!`);
 });

@@ -1,0 +1,25 @@
+
+{{room}}
+<div class="card col-md-3">
+<form action="/booking-form" method="POST">
+<img src={{photoURL}} class="card-img-top" alt="..." width="100%" >
+<input type="hidden" name="photo" value={{photoURL}}>
+    <input type="hidden" id="room-id" name="roomID" value={{roomID}}>
+    <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <input type="hidden" name="location" value={{location}}>
+        <p><strong>{{location}}</strong></p>
+        <p class="card-text">{{desc}}</p>
+        <input type="hidden" name="desc" value={{desc}}>
+        <p><strong>${{price}}</strong><small>CAD</small> per night</p>
+        <input type="hidden" name="price" value={{price}}>
+        <input type="date" name="checkin">
+        <input type="date" name="checkout">
+    </div>
+    <button type="submit" class="btn btn-primary">Book</button>
+</form>
+    
+    
+    
+</div>
+

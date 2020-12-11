@@ -15,7 +15,7 @@
       <body class="main_bk_img">
           {{>header user}}
           <div class="register-thanks">
-            <form id="add-room-form"  action="/upload" method="POST" name="room_form">
+            <form id="add-room-form"  action="/upload" method="POST" name="room_form" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" class="form-control" id="title" name="title" placeholder="Room Title">
                 </div>
@@ -23,13 +23,13 @@
                     <input type="text" class="form-control" id="description" name="desc" placeholder="Description">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="description" name="desc" placeholder="Description">
+                    <input type="text" class="form-control" id="location" name="city" placeholder="City">
                 </div>
                  <div class="form-group">
-                    <input type="text" class="form-control" id="description" name="desc" placeholder="Description">
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Price" min="0">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="description" name="desc" placeholder="Description">
+                    <input type="file" class="form-control-file" id="photo" name="photo" placeholder="Upload Photo">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Upload</button>

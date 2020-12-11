@@ -102,14 +102,24 @@
 {{>checkin}}
                 <div class="row room_banner">
                 </div>
-                <div class="row card-deck">
+{{#if roomLen}}
+<div class="row card-row">
+{{#each room}}
+{{>room}}
+{{!-- {{>room}} --}}
+{{/each}}
+</div>
+
+{{/if}}
+                {{!-- <div class="row card-deck">
                     <div class="card">
-                      <img src="jungle_treehouse.jpg" class="card-img-top" alt="..." width="100%">
+                      <img src="room_images/1607646348329.jpg" class="card-img-top" alt="..." width="100%">
                       <div class="card-body">
                         <h5 class="card-title">Amazon Rainforest Treehouse</h5>
                         <p class="card-text">A large treetop hut, above the lushes Amazon rainforest in Brazil.  Hear the wildlife and nature as you take in the beauty of the Amazon.</p>
                         <p><strong>$415</strong><small>CAD</small> per night</p>
                       </div>
+                       <button type="submit" class="btn btn-primary">Sign In</button>
                     </div>
                     <div class="card">
                       <img src="globe_tent.jpg" class="card-img-top" alt="..." width="100%">
@@ -128,8 +138,8 @@
                       </div>
                     </div>
                     
-                  </div>
-                  <div class=" row card-deck">
+                  </div> --}}
+                  {{!-- <div class=" row card-deck">
                     <div class="card">
                       <img src="overwater_hut.jpg" class="card-img-top" alt="..." width="100%">
                       <div class="card-body">
@@ -155,7 +165,7 @@
                       </div>
                     </div>
                     
-                  </div>
+                  </div> --}}
                 <div class="row rooms">
                     <div class="col-md-4">
 
